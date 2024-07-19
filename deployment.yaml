@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb
+  namespace: mariadb1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: prabh123
+        - name: MYSQL_DATABASE
+          value: wordpress
+        ports:
+        - containerPort: 3306
